@@ -1,0 +1,28 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+apply plugin : "java"
+
+group 'org.editor4j'
+
+repositories {
+    mavenCentral()
+}
+
+application {
+    mainClassName = "org.editor4j.Main"
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs = ['src']
+        }
+    }
+}
+dependencies {
+    implementation 'com.formdev:flatlaf:1.6.5'
+    implementation 'com.fifesoft:rsyntaxtextarea:3.1.4'
+}
