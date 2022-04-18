@@ -1,5 +1,7 @@
 package org.editor4j.gui.components;
 
+import com.formdev.flatlaf.icons.FlatTabbedPaneCloseIcon;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -47,7 +49,12 @@ public class ClosableTabbedPane extends JTabbedPane {
 
             this.add(new JLabel(parentTab.title));
 
-            JButton close = new JButton(new ImageIcon("assets/x.png"));
+
+            //new icon not committed to git yet
+            FlatTabbedPaneCloseIcon f = new FlatTabbedPaneCloseIcon();
+
+
+            JButton close = new JButton(f);
 
             close.addActionListener(e -> tabClosingListener.tabClosing(this.parentTab.index));
 

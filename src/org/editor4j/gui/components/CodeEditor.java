@@ -124,6 +124,7 @@ public class CodeEditor extends JPanel implements CodeEditorSignals {
         String friendlyName = s.friendlyName;
         footer.lang.setText(friendlyName);
 
+
     }
 
     @Override
