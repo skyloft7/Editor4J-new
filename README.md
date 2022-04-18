@@ -1,12 +1,19 @@
-Editor4J is a cross-platform easy to use code-editor for learners that doesn't overwhelm you like professional-grade IDE's.
-It's free and open-source under the GPL v2 license. 
+This is the Editor4J 2022.2+ source repository, please don't
+use the old repository.
 
-Check out what's going on at the Editor4J Trello Board: 
+Editor4J is a WIP RSyntaxTextArea-based Lightweight Code-Editor
+written in pure Java with syntax highlighting support for:
 
-https://trello.com/b/rQzfj5GZ/editor4j-20222
+- Java
+- C/C++
+- Kotlin
+- HTML/CSS/JavaScript
+- Python
+- Ruby
 
-The latest version is 2022.1, but 2022.2 is in progress right now.
+And more!
 
-![](project-info/screenshots/code.png)
-![](project-info/screenshots/getting_started.png)
+
+
+![](project-info/screenshots/a.png)
 
