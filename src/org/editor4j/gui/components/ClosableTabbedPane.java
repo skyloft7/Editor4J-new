@@ -1,15 +1,17 @@
 package org.editor4j.gui.components;
 
 import com.formdev.flatlaf.icons.FlatTabbedPaneCloseIcon;
+import org.editor4j.gui.signals.ClosableTabbedPaneSignals;
 
 import javax.swing.*;
 import java.awt.*;
 
 
-public class ClosableTabbedPane extends JTabbedPane {
+public class ClosableTabbedPane extends JTabbedPane implements ClosableTabbedPaneSignals {
     int currentIndex = 0;
 
 
+    @Override
     public void addTab(Tab tab) {
         tab.index = currentIndex++;
         addTab(tab.title, tab.jPanel);
