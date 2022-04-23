@@ -2,7 +2,6 @@ package org.editor4j.gui.components;
 
 import org.editor4j.models.SyntaxStyleFriendlyNamePair;
 import org.editor4j.Utils;
-import org.editor4j.gui.signals.CodeEditorSignals;
 import org.editor4j.managers.FileManager;
 import org.editor4j.managers.SettingsManager;
 import org.fife.ui.rsyntaxtextarea.RSyntaxTextArea;
@@ -20,7 +19,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.concurrent.ExecutionException;
 
-public class CodeEditor extends JPanel implements CodeEditorSignals {
+public class CodeEditor extends JPanel {
     public RSyntaxTextArea rSyntaxTextArea;
     public RTextScrollPane rTextScrollPane;
     public Footer footer = new Footer();
@@ -96,7 +95,6 @@ public class CodeEditor extends JPanel implements CodeEditorSignals {
     }
 
 
-    @Override
     public void open(File file) {
         this.file = file;
 
@@ -127,7 +125,6 @@ public class CodeEditor extends JPanel implements CodeEditorSignals {
 
     }
 
-    @Override
     public void save() {
         FileManager.saveFileOffEDT(file.getPath(), getText(), () -> {
             saved = true;
