@@ -56,7 +56,7 @@ public class Application {
 
         applySettings(SettingsManager.currentSettings);
         jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        jFrame.setSize(640, 480);
+        jFrame.setSize(1280, 960);
         jFrame.setVisible(true);
     }
 
@@ -74,7 +74,7 @@ public class Application {
         ));
         jMenuBar.add(new Menu("Edit",
 
-                new MenuItem("Find/Replace", KeyStroke.getKeyStroke((char) KeyEvent.VK_F, osMenuMask), new FindReplaceMenuItemListener())
+                new MenuItem("Find/Replace", KeyStroke.getKeyStroke((char) KeyEvent.VK_F, osMenuMask), new FindMenuItemListener())
         ));
         jMenuBar.add(new Menu("Editor",
 
