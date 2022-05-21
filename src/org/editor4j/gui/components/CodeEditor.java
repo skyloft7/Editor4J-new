@@ -15,30 +15,31 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.text.BadLocationException;
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
 public class CodeEditor extends JPanel {
     public RSyntaxTextArea rSyntaxTextArea;
     public RTextScrollPane rTextScrollPane;
-    public Footer footer = new Footer();
     public File file;
     public boolean saved = true;
-
+    public InfoBar infoBar = new InfoBar();
+    public JPanel toolbarPanel = new JPanel();
+    public ArrayList<Class> installedToolbarClasses = new ArrayList<>();
     public CodeEditor(){
 
         setLayout(new BorderLayout());
 
+        toolbarPanel.setLayout(new BoxLayout(toolbarPanel, BoxLayout.Y_AXIS));
+
+
 
         rSyntaxTextArea = new RSyntaxTextArea();
         rTextScrollPane = new RTextScrollPane(rSyntaxTextArea);
-        add(rTextScrollPane, BorderLayout.CENTER);
-        add(footer, BorderLayout.SOUTH);
-
-        applySettings();
-
-
         rSyntaxTextArea.addCaretListener(e -> {
             int row = rSyntaxTextArea.getCaretLineNumber() + 1;
             int column = 0;
@@ -53,7 +54,7 @@ public class CodeEditor extends JPanel {
             } catch (BadLocationException ex) {
                 ex.printStackTrace();
             }
-            footer.cursorPos.setText("Line " + row + " : Column " + column);
+            infoBar.cursorPos.setText("Line " + row + " : Column " + column);
         });
 
         rSyntaxTextArea.getDocument().addDocumentListener(new DocumentListener() {
@@ -70,12 +71,35 @@ public class CodeEditor extends JPanel {
             @Override
             public void changedUpdate(DocumentEvent e) {
                 saved = false;
-                footer.fileStatus.setText("Not Saved");
+                infoBar.fileStatus.setText("Not Saved");
             }
         });
 
         rSyntaxTextArea.setCodeFoldingEnabled(true);
 
+
+
+
+
+
+        add(infoBar, BorderLayout.SOUTH);
+        add(rTextScrollPane, BorderLayout.CENTER);
+        add(toolbarPanel, BorderLayout.NORTH);
+
+        applySettings();
+    }
+
+    public boolean containsToolbar(Class c){
+        for(Class t : installedToolbarClasses){
+
+
+            if(t.getName().equals(c.getName()))
+                return true;
+
+            System.out.println(t.getName());
+        }
+
+        return false;
     }
 
     public void setLanguage(String lang){
@@ -102,7 +126,7 @@ public class CodeEditor extends JPanel {
         FileManager.readFileOffEDT(this.file, s -> SwingUtilities.invokeLater(() -> {
             try {
                 setText((String) s.get());
-                footer.fileStatus.setText("File Loaded");
+                infoBar.fileStatus.setText("File Loaded");
 
             } catch (InterruptedException | ExecutionException e) {
                 e.printStackTrace();
@@ -120,7 +144,7 @@ public class CodeEditor extends JPanel {
         setLanguage(s.syntaxStyle);
 
         String friendlyName = s.friendlyName;
-        footer.lang.setText(friendlyName);
+        infoBar.lang.setText(friendlyName);
 
 
     }
@@ -128,9 +152,10 @@ public class CodeEditor extends JPanel {
     public void save() {
         FileManager.saveFileOffEDT(file.getPath(), getText(), () -> {
             saved = true;
-            footer.fileStatus.setText("File Saved");
+            infoBar.fileStatus.setText("File Saved");
         });
     }
+
 
     public void applySettings() {
         try {
@@ -142,4 +167,58 @@ public class CodeEditor extends JPanel {
         rSyntaxTextArea.setTabSize(SettingsManager.currentSettings.tabSize);
         rSyntaxTextArea.setLineWrap(SettingsManager.currentSettings.wordWrapEnabled);
     }
+
+    public void addToolbar(Class classOfToolbarToAdd) {
+
+        if(!installedToolbarClasses.contains(classOfToolbarToAdd)) {
+            try {
+            Toolbar toolBar = (Toolbar) classOfToolbarToAdd.getDeclaredConstructor().newInstance();
+
+
+            toolBar.close.addActionListener(e -> {
+                        removeToolbar(classOfToolbarToAdd);
+                    }
+            );
+            toolbarPanel.add(toolBar);
+            toolbarPanel.revalidate();
+            toolbarPanel.repaint();
+            toolBar.isVisible = !toolBar.isVisible;
+            installedToolbarClasses.add(classOfToolbarToAdd);
+
+            } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void removeToolbar(Class classOfToolbarToRemove){
+
+        if(installedToolbarClasses.contains(classOfToolbarToRemove)){
+
+            installedToolbarClasses.remove(classOfToolbarToRemove);
+
+            for(Object t : toolbarPanel.getComponents()){
+
+
+                if(t.getClass().getName().equals(classOfToolbarToRemove.getName())) {
+
+
+                    Toolbar toolbar = (Toolbar) t;
+                    for (ActionListener l : toolbar.close.getActionListeners())
+                        toolbar.close.removeActionListener(l);
+
+
+                    toolbarPanel.remove(toolbar);
+                    toolbarPanel.revalidate();
+                    toolbarPanel.repaint();
+                    toolbar.isVisible = !toolbar.isVisible;
+
+                }
+            }
+
+
+        }
+
+    }
+
 }

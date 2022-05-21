@@ -19,7 +19,7 @@ import static org.editor4j.Utils.osMenuMask;
 /***
  * The base class for Editor4J. This class is responsible for hosting different 'Components'
  * (code editors, file explorer), and setting them up with ComponentRegistry so that event listeners
- * can access them and modify their state through Signals
+ * (also registered here) can access them and modify their state through signals
  */
 public class Application {
 
@@ -55,6 +55,7 @@ public class Application {
         jFrame.setContentPane(contentPane);
 
         applySettings(SettingsManager.currentSettings);
+        jFrame.setIconImage(Toolkit.getDefaultToolkit().getImage("icon.png"));
         jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         jFrame.setSize(1280, 960);
         jFrame.setVisible(true);
@@ -74,7 +75,8 @@ public class Application {
         ));
         jMenuBar.add(new Menu("Edit",
 
-                new MenuItem("Find/Replace", KeyStroke.getKeyStroke((char) KeyEvent.VK_F, osMenuMask), new FindMenuItemListener())
+                new MenuItem("Find/Replace", KeyStroke.getKeyStroke((char) KeyEvent.VK_F, osMenuMask), new FindReplaceMenuItemListener())
+
         ));
         jMenuBar.add(new Menu("Editor",
 
