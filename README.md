@@ -15,5 +15,5 @@ And more!
 
 
 
-![](project-info/screenshots/a.png)
+![](project-info/screenshots/dark.png)
 
