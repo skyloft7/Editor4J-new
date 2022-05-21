@@ -1,3 +1,9 @@
+
+
+
+
+
+
 package org.editor4j;
 
 import org.editor4j.models.SyntaxStyleFriendlyNamePair;
@@ -42,6 +48,14 @@ public class Utils {
         languages.put("md", new SyntaxStyleFriendlyNamePair(SYNTAX_STYLE_MARKDOWN, "Markdown"));
         languages.put("sh", new SyntaxStyleFriendlyNamePair(SYNTAX_STYLE_UNIX_SHELL, "Unix Shell Script"));
         languages.put("bat", new SyntaxStyleFriendlyNamePair(SYNTAX_STYLE_WINDOWS_BATCH, "Windows Batch File"));
+        languages.put("cs", new SyntaxStyleFriendlyNamePair(SYNTAX_STYLE_CSHARP, "C#"));
+        languages.put("clj", new SyntaxStyleFriendlyNamePair(SYNTAX_STYLE_CLOJURE, "Clojure"));
+        languages.put("scala", new SyntaxStyleFriendlyNamePair(SYNTAX_STYLE_SCALA, "Scala"));
+        languages.put("sc", new SyntaxStyleFriendlyNamePair(SYNTAX_STYLE_SCALA, "Scala"));
+        languages.put("ts", new SyntaxStyleFriendlyNamePair(SYNTAX_STYLE_TYPESCRIPT, "TypeScript"));
+        languages.put("dart", new SyntaxStyleFriendlyNamePair(SYNTAX_STYLE_DART, "Dart"));
+
+
 
 
     }
