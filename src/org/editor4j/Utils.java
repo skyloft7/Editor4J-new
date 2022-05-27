@@ -18,7 +18,6 @@ import java.io.ObjectOutputStream;
 import java.util.HashMap;
 
 import static org.fife.ui.rsyntaxtextarea.SyntaxConstants.*;
-import static org.fife.ui.rsyntaxtextarea.SyntaxConstants.SYNTAX_STYLE_NONE;
 
 public class Utils {
     /**
@@ -80,7 +79,8 @@ public class Utils {
 
     }
 
-    public static final int osMenuMask = Toolkit.getDefaultToolkit().getMenuShortcutKeyMaskEx();
+    public static Toolkit toolkit = Toolkit.getDefaultToolkit();
+    public static final int osMenuMask = toolkit.getMenuShortcutKeyMaskEx();
 
     public static void setLookAndFeel(String c){
         try {

@@ -1,9 +1,10 @@
 package org.editor4j.gui;
 
 import org.editor4j.Utils;
-import org.editor4j.gui.components.*;
+import org.editor4j.gui.components.CodeEditor;
 import org.editor4j.gui.components.Menu;
 import org.editor4j.gui.components.MenuItem;
+import org.editor4j.gui.ide.CodeEditors;
 import org.editor4j.gui.listeners.*;
 import org.editor4j.managers.SettingsManager;
 import org.editor4j.models.Settings;
@@ -13,7 +14,6 @@ import java.awt.*;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.io.File;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import static org.editor4j.Utils.osMenuMask;
@@ -31,13 +31,11 @@ public class Application {
     public JPanel contentPane = new JPanel();
     public JPanel toolBars = new JPanel();
 
-    public ClosableTabbedPane tabPane = new ClosableTabbedPane();
+    public CodeEditors codeEditorArea = new CodeEditors();
 
     public JFrame jFrame = new JFrame("Editor4J " + version);
 
     public JMenuBar jMenuBar;
-
-    Toolkit toolkit = Toolkit.getDefaultToolkit();
 
     public void createNewEditor() {
         //Workaround, codeEditorScrollPane isn't attached on startup, so it doesn't
@@ -52,9 +50,9 @@ public class Application {
 
         contentPane.setLayout(new BorderLayout());
         contentPane.add(toolBars, BorderLayout.NORTH);
-        contentPane.add(tabPane, BorderLayout.CENTER);
+        contentPane.add(codeEditorArea, BorderLayout.CENTER);
 
-        ComponentRegistry.components.put("tabPane", tabPane);
+        ComponentRegistry.components.put("codeEditorArea", codeEditorArea);
 
         jFrame.setContentPane(contentPane);
 
@@ -77,7 +75,7 @@ public class Application {
 
 
         for(File iconFile : iconFiles){
-            icons.add(toolkit.getImage(iconFile.getPath()));
+            icons.add(Utils.toolkit.getImage(iconFile.getPath()));
         }
 
         return icons;
@@ -109,9 +107,9 @@ public class Application {
         Utils.setLookAndFeel(s.style.lookAndFeel);
         Utils.updateComponentTreeUI(jFrame);
 
-        for(int i = 0; i < tabPane.getTabCount(); i++) {
+        for(int i = 0; i < codeEditorArea.getTabCount(); i++) {
 
-            CodeEditor codeEditor = (CodeEditor) tabPane.getComponentAt(i);
+            CodeEditor codeEditor = codeEditorArea.getEditorAt(i);
             codeEditor.applySettings();
         }
     }
