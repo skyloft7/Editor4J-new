@@ -12,6 +12,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
+import java.io.File;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 import static org.editor4j.Utils.osMenuMask;
 
@@ -28,12 +31,13 @@ public class Application {
     public JPanel contentPane = new JPanel();
     public JPanel toolBars = new JPanel();
 
-
     public ClosableTabbedPane tabPane = new ClosableTabbedPane();
 
     public JFrame jFrame = new JFrame("Editor4J " + version);
 
     public JMenuBar jMenuBar;
+
+    Toolkit toolkit = Toolkit.getDefaultToolkit();
 
     public void createNewEditor() {
         //Workaround, codeEditorScrollPane isn't attached on startup, so it doesn't
@@ -55,13 +59,29 @@ public class Application {
         jFrame.setContentPane(contentPane);
 
         applySettings(SettingsManager.currentSettings);
-        jFrame.setIconImage(Toolkit.getDefaultToolkit().getImage("icon.png"));
+
+
+
+        jFrame.setIconImages(searchAllIcons());
+
         jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         jFrame.setSize(1280, 960);
         jFrame.setVisible(true);
     }
 
+    public ArrayList<Image> searchAllIcons(){
+        ArrayList<Image> icons = new ArrayList<>();
 
+        File[] iconFiles = new File("resources/icons").listFiles();
+
+
+
+        for(File iconFile : iconFiles){
+            icons.add(toolkit.getImage(iconFile.getPath()));
+        }
+
+        return icons;
+    }
 
     public void createMenuItems(){
         System.setProperty("flatlaf.menuBarEmbedded", "false");
