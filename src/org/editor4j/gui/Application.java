@@ -82,7 +82,7 @@ public class Application {
     }
 
     public void createMenuItems(){
-        System.setProperty("flatlaf.menuBarEmbedded", "false");
+        System.setProperty("flatlaf.menuBarEmbedded", "true");
         jMenuBar = new JMenuBar();
 
         jMenuBar.add(new Menu("File",
@@ -100,6 +100,8 @@ public class Application {
 
                 new MenuItem("Settings", KeyStroke.getKeyStroke((char) KeyEvent.VK_S, osMenuMask | InputEvent.ALT_DOWN_MASK), new SettingsMenuItemListener(this))
         ));
+
+
     }
 
 
