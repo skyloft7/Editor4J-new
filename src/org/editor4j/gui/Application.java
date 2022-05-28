@@ -101,7 +101,13 @@ public class Application {
                 new MenuItem("Settings", KeyStroke.getKeyStroke((char) KeyEvent.VK_S, osMenuMask | InputEvent.ALT_DOWN_MASK), new SettingsMenuItemListener(this))
         ));
 
+        jMenuBar.add(new Menu("Help",
 
+                //NOTE this uses the same shortcut as save
+                new MenuItem("About", null, new AboutMenuItemListener()),
+                new MenuItem("Editor4J on GitHub", null, new VisitGitHubRepoListener()),
+                new MenuItem("License", null, new ShowLicenseListener())
+        ));
     }
 
 
