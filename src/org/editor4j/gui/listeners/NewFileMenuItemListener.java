@@ -1,9 +1,9 @@
 package org.editor4j.gui.listeners;
 
-import org.editor4j.gui.components.ClosableTabbedPane;
-import org.editor4j.gui.components.CodeEditor;
-import org.editor4j.gui.components.Tab;
 import org.editor4j.gui.ComponentRegistry;
+import org.editor4j.gui.components.Editor;
+import org.editor4j.gui.components.Tab;
+import org.editor4j.gui.ide.CodeEditorComponent;
 import org.editor4j.managers.DirectoryManager;
 
 import javax.swing.*;
@@ -27,7 +27,7 @@ public class NewFileMenuItemListener implements ActionListener {
                 boolean isNewFileCreated = jFileChooser.getSelectedFile().createNewFile();
                 if(isNewFileCreated){
 
-                    ClosableTabbedPane closableTabbedPane = (ClosableTabbedPane) ComponentRegistry.components.get("tabPane");
+                    CodeEditorComponent codeEditors = (CodeEditorComponent) ComponentRegistry.components.get("codeEditorComponent");
 
 
                     File file = jFileChooser.getSelectedFile();
@@ -35,10 +35,10 @@ public class NewFileMenuItemListener implements ActionListener {
                     DirectoryManager.defaultJFileChooserPath = Objects.requireNonNullElse(file.getParentFile(), FileSystemView.getFileSystemView().getHomeDirectory());
 
 
-                    CodeEditor codeEditor = new CodeEditor();
-                    codeEditor.open(file);
+                    Editor editor = new Editor();
+                    editor.open(file);
 
-                    closableTabbedPane.addTab(new Tab(file.getName(), codeEditor));
+                    codeEditors.addTab(new Tab(file.getName(), editor));
 
                 }
                 else {

@@ -22,7 +22,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
-public class CodeEditor extends JPanel {
+public class Editor extends JPanel {
     public RSyntaxTextArea rSyntaxTextArea;
     public RTextScrollPane rTextScrollPane;
     public File file;
@@ -30,7 +30,7 @@ public class CodeEditor extends JPanel {
     public InfoBar infoBar = new InfoBar();
     public JPanel toolbarPanel = new JPanel();
     public ArrayList<Class> installedToolbarClasses = new ArrayList<>();
-    public CodeEditor(){
+    public Editor(){
 
         setLayout(new BorderLayout());
 

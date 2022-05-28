@@ -1,6 +1,7 @@
 package org.editor4j.gui.components;
 
 import org.editor4j.gui.ComponentRegistry;
+import org.editor4j.gui.ide.CodeEditorComponent;
 import org.fife.ui.rtextarea.SearchContext;
 import org.fife.ui.rtextarea.SearchEngine;
 import org.fife.ui.rtextarea.SearchResult;
@@ -102,12 +103,12 @@ public class FindReplaceBar extends Toolbar implements ActionListener {
         searchContext.setWholeWord(wholeWord.isSelected());
 
 
-        ClosableTabbedPane closableTabbedPane = (ClosableTabbedPane) ComponentRegistry.components.get("tabPane");
-        int index = closableTabbedPane.getSelectedIndex();
+        CodeEditorComponent codeEditorComponent = (CodeEditorComponent) ComponentRegistry.components.get("codeEditorComponent");
+        int index = codeEditorComponent.getSelectedEditorIndex();
 
         if(index != -1) {
 
-            CodeEditor c = (CodeEditor) closableTabbedPane.getSelectedComponent();
+            Editor c = codeEditorComponent.getEditorAt(index);
             SearchResult s;
             if(e.getSource() != replaceAll)
                 s = SearchEngine.find(c.rSyntaxTextArea, searchContext);

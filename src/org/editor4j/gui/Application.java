@@ -1,10 +1,10 @@
 package org.editor4j.gui;
 
 import org.editor4j.Utils;
-import org.editor4j.gui.components.CodeEditor;
+import org.editor4j.gui.components.Editor;
 import org.editor4j.gui.components.Menu;
 import org.editor4j.gui.components.MenuItem;
-import org.editor4j.gui.ide.CodeEditors;
+import org.editor4j.gui.ide.CodeEditorComponent;
 import org.editor4j.gui.listeners.*;
 import org.editor4j.managers.SettingsManager;
 import org.editor4j.models.Settings;
@@ -31,7 +31,7 @@ public class Application {
     public JPanel contentPane = new JPanel();
     public JPanel toolBars = new JPanel();
 
-    public CodeEditors codeEditorArea = new CodeEditors();
+    public CodeEditorComponent codeEditorComponent = new CodeEditorComponent();
 
     public JFrame jFrame = new JFrame("Editor4J " + version);
 
@@ -43,16 +43,16 @@ public class Application {
         Utils.setLookAndFeel(SettingsManager.currentSettings.style.lookAndFeel);
 
         createMenuItems();
-        ComponentRegistry.components.put("menuBar", jMenuBar);
+        ComponentRegistry.components.put("menuBarComponent", jMenuBar);
         jFrame.setJMenuBar(jMenuBar);
 
         toolBars.setLayout(new BoxLayout(toolBars, BoxLayout.Y_AXIS));
 
         contentPane.setLayout(new BorderLayout());
         contentPane.add(toolBars, BorderLayout.NORTH);
-        contentPane.add(codeEditorArea, BorderLayout.CENTER);
+        contentPane.add(codeEditorComponent, BorderLayout.CENTER);
 
-        ComponentRegistry.components.put("codeEditorArea", codeEditorArea);
+        ComponentRegistry.components.put("codeEditorComponent", codeEditorComponent);
 
         jFrame.setContentPane(contentPane);
 
@@ -107,10 +107,10 @@ public class Application {
         Utils.setLookAndFeel(s.style.lookAndFeel);
         Utils.updateComponentTreeUI(jFrame);
 
-        for(int i = 0; i < codeEditorArea.getTabCount(); i++) {
+        for(int i = 0; i < codeEditorComponent.getTabCount(); i++) {
 
-            CodeEditor codeEditor = codeEditorArea.getEditorAt(i);
-            codeEditor.applySettings();
+            Editor editor = codeEditorComponent.getEditorAt(i);
+            editor.applySettings();
         }
     }
 
