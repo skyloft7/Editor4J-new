@@ -4,6 +4,7 @@ package org.editor4j.gui.dialogs;
 import org.editor4j.gui.components.DialogBase;
 import org.editor4j.gui.components.Field;
 import org.editor4j.gui.components.FontBox;
+import org.editor4j.gui.components.RenderedFont;
 import org.editor4j.gui.styles.DarkStyle;
 import org.editor4j.gui.styles.LightStyle;
 import org.editor4j.gui.styles.MetalStyle;
@@ -28,7 +29,7 @@ public class SettingsDialog extends DialogBase {
 
     JComboBox<Style> styles = new JComboBox<>();
 
-    FontBox fonts = new FontBox(15, Font.PLAIN, GraphicsEnvironment.getLocalGraphicsEnvironment().getAllFonts());
+    FontBox fonts;
     JSpinner fontSizes = new JSpinner(new SpinnerNumberModel(20, 10, 50, 1));
 
 
@@ -90,6 +91,9 @@ public class SettingsDialog extends DialogBase {
     }
 
     private JPanel buildFontOptions(){
+        Font[] allFonts = GraphicsEnvironment.getLocalGraphicsEnvironment().getAllFonts();
+
+        fonts = new FontBox(allFonts);
         JPanel jPanel = new JPanel();
         jPanel.setLayout(new FlowLayout());
 
@@ -100,7 +104,7 @@ public class SettingsDialog extends DialogBase {
 
     private void setSettings(Settings currentSettings) {
         styles.getModel().setSelectedItem(currentSettings.style);
-        fonts.getModel().setSelectedItem(currentSettings.font.getFontName());
+        fonts.setFont(currentSettings.font);
         fontSizes.setValue(currentSettings.font.getSize());
         wordWrap.setSelected(currentSettings.wordWrapEnabled);
         tabSizes.setValue(currentSettings.tabSize);
@@ -115,7 +119,7 @@ public class SettingsDialog extends DialogBase {
         Settings settings = new Settings();
         settings.style = (Style) styles.getSelectedItem();
         int fontSize = (int) fontSizes.getValue();
-        String fontName = (String) fonts.getSelectedItem();
+        String fontName = ((RenderedFont) fonts.getSelectedItem()).fontName;
 
         settings.font = new Font(fontName, Font.PLAIN, fontSize);
         settings.wordWrapEnabled = wordWrap.isSelected();
