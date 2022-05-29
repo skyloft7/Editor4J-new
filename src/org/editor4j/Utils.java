@@ -20,14 +20,6 @@ import java.util.HashMap;
 import static org.fife.ui.rsyntaxtextarea.SyntaxConstants.*;
 
 public class Utils {
-    /**
-     * Serialization with FileInputStream doesn't accept
-     * serializing to directories if it isn't already present.
-     * This method fixes that by creating all parent directories
-     * of the file, then serializing to the file.
-     * @param file - Where to serialize to
-     * @param o - Object to serialize
-     */
 
     public static HashMap<String, SyntaxStyleFriendlyNamePair> languages = new HashMap<String, SyntaxStyleFriendlyNamePair>();
 
@@ -61,14 +53,7 @@ public class Utils {
 
     public static void serializeToPath(File file, Object o){
         if(!file.exists()) {
-            //check for return val of true
-            file.getParentFile().mkdirs();
-            try {
-                file.createNewFile();
-            } catch (IOException e) {
-                System.err.println("Not allowed to create file " + file.getName() + ". do you have permissions?");
-                e.printStackTrace();
-            }
+            createNewFile(file);
         }
         try {
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream(file));
@@ -81,6 +66,23 @@ public class Utils {
 
     public static Toolkit toolkit = Toolkit.getDefaultToolkit();
     public static final int osMenuMask = toolkit.getMenuShortcutKeyMaskEx();
+
+
+    /**
+     * It's recommended to use Utils.createNewFile() instead of File.createNewFile() where necessary
+     * because this lets the file be created in a specified path, whereas File.createNewFile() cannot.
+     *
+     * @param f
+     */
+    public static void createNewFile(File f){
+        f.getParentFile().mkdirs();
+        try {
+            f.createNewFile();
+        } catch (IOException e) {
+            System.err.println("Not allowed to create file " + f.getName() + ". do you have permissions?");
+            e.printStackTrace();
+        }
+    }
 
     public static void setLookAndFeel(String c){
         try {

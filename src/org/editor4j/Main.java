@@ -1,6 +1,9 @@
+
+
 package org.editor4j;
 
 import org.editor4j.gui.Application;
+import org.editor4j.gui.dialogs.FirstTimeLicenseDialog;
 import org.editor4j.managers.SettingsManager;
 
 import javax.swing.*;
@@ -8,10 +11,30 @@ import java.io.File;
 
 public class Main {
     public static void main(String[] args) {
-            SwingUtilities.invokeLater(()-> {
-            loadSettings();
-            new Application().createNewEditor();
+        SwingUtilities.invokeLater(()-> {
+
+            File firstTimeStartupFile = new File("appdata/firstTime.e4j");
+
+            if(!firstTimeStartupFile.exists()){
+
+                FirstTimeLicenseDialog firstTimeLicenseDialog = new FirstTimeLicenseDialog();
+                firstTimeLicenseDialog.setVisible(true);
+
+                firstTimeLicenseDialog.accept.addActionListener(e -> {
+                    firstTimeLicenseDialog.dispose();
+                    Utils.createNewFile(firstTimeStartupFile);
+                    launchEditor4J();
+                });
+
+            }
+            else
+                launchEditor4J();
         });
+    }
+
+    private static void launchEditor4J(){
+        loadSettings();
+        new Application().createNewEditor();
     }
 
     private static void loadSettings() {
