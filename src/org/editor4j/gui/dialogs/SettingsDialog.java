@@ -5,6 +5,7 @@ import org.editor4j.gui.components.DialogBase;
 import org.editor4j.gui.components.Field;
 import org.editor4j.gui.components.FontBox;
 import org.editor4j.gui.components.RenderedFont;
+import org.editor4j.gui.styles.DarkPurple;
 import org.editor4j.gui.styles.DarkStyle;
 import org.editor4j.gui.styles.LightStyle;
 import org.editor4j.gui.styles.MetalStyle;
@@ -80,6 +81,7 @@ public class SettingsDialog extends DialogBase {
             styles.addItem(new LightStyle());
             styles.addItem(new DarkStyle());
             styles.addItem(new MetalStyle());
+            styles.addItem(new DarkPurple());
 
         } catch (IOException e){
             e.printStackTrace();

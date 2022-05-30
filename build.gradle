@@ -24,5 +24,6 @@ sourceSets {
 }
 dependencies {
     implementation 'com.formdev:flatlaf:2.2'
+    implementation 'com.formdev:flatlaf-intellij-themes:2.3'
     implementation 'com.fifesoft:rsyntaxtextarea:3.2.0'
 }
