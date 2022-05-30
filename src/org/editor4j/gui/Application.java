@@ -38,9 +38,7 @@ public class Application {
     public JMenuBar jMenuBar;
 
     public void createNewEditor() {
-        //Workaround, codeEditorScrollPane isn't attached on startup, so it doesn't
-        //get the new LaF
-        Utils.setLookAndFeel(SettingsManager.currentSettings.style.lookAndFeel);
+
 
         createMenuItems();
         ComponentRegistry.components.put("menuBarComponent", jMenuBar);
