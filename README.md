@@ -1,19 +1,27 @@
-This is the Editor4J 2022.2+ source repository, please don't
-use the old repository.
-
-Editor4J is a WIP RSyntaxTextArea-based Lightweight Code-Editor
-written in pure Java with syntax highlighting support for:
-
-- Java
-- C/C++
-- Kotlin
-- HTML/CSS/JavaScript
-- Python
-- Ruby
-
-And more!
+# Editor4J 2022.2
 
 
+
+
+Editor4J is for anyone looking for a lightweight code-editor for teaching coding
+in schools or learning individually. Professional IDEs like IntelliJ, Eclipse and NetBeans are great
+but their features can sometimes make the experience more complicated, and you end up
+spending time learning to use the IDE instead of Learning to code.
+
+Editor4J *will* also add support for creating and taking courses uploaded by the community
+or on a private server. 
 
 ![](project-info/screenshots/dark.png)
+
+Check out our (new!) Trello board for an update on development!
+https://trello.com/b/Tw6ABlzG/editor4j-making-coding-accessible
+
+You can also file an issue in GitHub if you find a bug, please give:
+
+* Clear Reproduction steps (I pressed this, then that)
+* What you expected
+* What happened instead
+* Environment information OS, JDK (visible in Help > About), directory listing of /appdata folder
+
+Editor4J is under the MIT License visible in *resources/LICENSE* or viewable in About > License
 
