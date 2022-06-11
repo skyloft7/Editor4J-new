@@ -11,6 +11,19 @@ spending time learning to use the IDE instead of Learning to code.
 Editor4J *will* also add support for creating and taking courses uploaded by the community
 or on a private server. 
 
+#Update:
+
+This project is currently "on the shelf", meaning development will be stopped for a while. Editor4J already implements 
+many useful features and development did start for the 
+course server. You can try it by running the Editor4J-CourseServer locally (make sure it's on port 9000), 
+and then going to Courses/Course Explorer. It should return some sample
+courses and it's description.
+
+I'm not by any means looking to stop development on this project, but I need a break because
+it's hard and stressful to work on things alone. 
+
+
+
 ![](project-info/screenshots/dark.png)
 
 Check out our (new!) Trello board for an update on development!
