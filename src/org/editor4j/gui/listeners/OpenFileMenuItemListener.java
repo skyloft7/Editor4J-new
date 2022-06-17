@@ -27,12 +27,18 @@ public class OpenFileMenuItemListener implements ActionListener {
 
             File file = jFileChooser.getSelectedFile();
 
-            DirectoryManager.defaultJFileChooserPath = Objects.requireNonNullElse(file.getParentFile(), FileSystemView.getFileSystemView().getHomeDirectory());
+            if(file.exists()) {
 
-            Editor editor = new Editor();
-            editor.open(file);
+                DirectoryManager.defaultJFileChooserPath = Objects.requireNonNullElse(file.getParentFile(), FileSystemView.getFileSystemView().getHomeDirectory());
 
-            codeEditors.addTab(new Tab(file.getName(), editor));
+                Editor editor = new Editor();
+                editor.open(file);
+
+                codeEditors.addTab(new Tab(file.getName(), editor));
+
+            }
+            else
+                JOptionPane.showMessageDialog(null, "Sorry, but " + file.getAbsolutePath() + " doesn't exist!");
 
         }
 
