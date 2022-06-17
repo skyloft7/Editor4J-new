@@ -41,9 +41,12 @@ public class FileManager {
                 total += line + "\n";
             }
 
+            bufferedReader.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+
 
         return total;
     }
