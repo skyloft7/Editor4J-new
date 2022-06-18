@@ -21,7 +21,7 @@ import static org.fife.ui.rsyntaxtextarea.SyntaxConstants.*;
 
 public class Utils {
 
-    public static HashMap<String, SyntaxStyleFriendlyNamePair> languages = new HashMap<String, SyntaxStyleFriendlyNamePair>();
+    public static HashMap<String, SyntaxStyleFriendlyNamePair> languages = new HashMap<>();
 
     static {
 
@@ -71,7 +71,7 @@ public class Utils {
      * It's recommended to use Utils.createNewFile() instead of File.createNewFile() where necessary
      * because this lets the file be created in a specified path, whereas File.createNewFile() cannot.
      *
-     * @param f
+     * @param f The File to create
      */
     public static void createNewFile(File f){
         f.getParentFile().mkdirs();
@@ -101,9 +101,9 @@ public class Utils {
 
     /***
      * This is a workaround for SwingUtilities.updateComponentTreeUI() not working
-     * on RSyntaxTextArea instances when changing RSTA's Theme. Use this method when
-     * updating the Look and Feel and then changing RSTA's Theme.
-     * @param rootComponent
+     * on RSyntaxTextArea instances when changing RSyntaxTextArea's Theme. Use this method when
+     * updating the Look and Feel and then changing RSyntaxTextArea's Theme.
+     * @param rootComponent The root component to update
      */
     public static void updateComponentTreeUI(Component rootComponent) {
 
@@ -126,9 +126,9 @@ public class Utils {
         if (children != null) {
             for (Component child : children) {
                 /*Gutters act weird if you try to call SwingUtilities.updateComponentTreeUI()
-                On it, it defaults to Monospaced Font when you apply a given font twice, e.g Ani
+                On it, it defaults to Monospaced Font when you apply a given font twice, e.g. Ani
                 I don't think this issue has anything to do with Fonts, but rather the Gutter
-                object losing it's state when it's UI is updated*/
+                object losing its state when it's UI is updated*/
                 if(!(child instanceof Gutter))
                     updateComponentTreeUI(child);
             }
