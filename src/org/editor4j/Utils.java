@@ -45,8 +45,7 @@ public class Utils {
         languages.put("sc", new SyntaxStyleFriendlyNamePair(SYNTAX_STYLE_SCALA, "Scala"));
         languages.put("ts", new SyntaxStyleFriendlyNamePair(SYNTAX_STYLE_TYPESCRIPT, "TypeScript"));
         languages.put("dart", new SyntaxStyleFriendlyNamePair(SYNTAX_STYLE_DART, "Dart"));
-
-
+        languages.put("txt", new SyntaxStyleFriendlyNamePair(SYNTAX_STYLE_NONE, "Plain Text"));
 
 
     }
