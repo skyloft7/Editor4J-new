@@ -1,6 +1,7 @@
 package org.editor4j.gui.dialogs;
 
 import com.formdev.flatlaf.FlatLightLaf;
+import org.editor4j.ErrorLogger;
 import org.editor4j.Utils;
 
 import javax.swing.*;
@@ -19,7 +20,7 @@ public class FirstTimeLicenseDialog extends LicenseDialog {
         try {
             UIManager.setLookAndFeel(new FlatLightLaf());
         } catch (UnsupportedLookAndFeelException e) {
-            e.printStackTrace();
+            ErrorLogger.log(e);
         }
 
         ButtonGroup buttonGroup = new ButtonGroup();

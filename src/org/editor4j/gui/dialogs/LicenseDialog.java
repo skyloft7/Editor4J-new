@@ -1,5 +1,6 @@
 package org.editor4j.gui.dialogs;
 
+import org.editor4j.ErrorLogger;
 import org.editor4j.gui.components.DialogBase;
 import org.editor4j.managers.FileManager;
 
@@ -21,10 +22,8 @@ public class LicenseDialog extends DialogBase {
         FileManager.readFileOffEDT(new File("resources/LICENSE"), s -> {
             try {
                 licenseText.setText((String) s.get());
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } catch (ExecutionException e) {
-                e.printStackTrace();
+            } catch (InterruptedException | ExecutionException e) {
+                ErrorLogger.log(e);
             }
         });
 

@@ -1,11 +1,15 @@
 package org.editor4j.managers;
 
+import org.editor4j.ErrorLogger;
 import org.editor4j.Utils;
 import org.editor4j.gui.styles.LightStyle;
 import org.editor4j.models.Settings;
 
 import java.awt.*;
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 
 public class SettingsManager {
     public static Settings currentSettings;
@@ -20,7 +24,7 @@ public class SettingsManager {
             STARTUP_DEFAULT_SETTINGS.wordWrapEnabled = false;
             STARTUP_DEFAULT_SETTINGS.tabSize = 4;
         } catch (IOException e) {
-            e.printStackTrace();
+            ErrorLogger.log(e);
         }
     }
 
@@ -29,7 +33,7 @@ public class SettingsManager {
             ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(settingsFile));
             return (Settings) objectInputStream.readObject();
         } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
+            ErrorLogger.log(e);
         }
         //Never happens because deserialize is only called when loadSettings() finds editor.settingsFile
         return null;

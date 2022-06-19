@@ -1,5 +1,6 @@
 package org.editor4j.gui.listeners;
 
+import org.editor4j.ErrorLogger;
 import org.editor4j.gui.Application;
 import org.editor4j.gui.dialogs.SettingsDialog;
 import org.editor4j.managers.SettingsManager;
@@ -30,7 +31,7 @@ public class SettingsMenuItemListener implements ActionListener {
                 application.applySettings(chosenSettings);
 
             } catch (IOException e) {
-                e.printStackTrace();
+                ErrorLogger.log(e);
             }
         });
 

@@ -1,5 +1,6 @@
 package org.editor4j.managers;
 
+import org.editor4j.ErrorLogger;
 import org.editor4j.gui.listeners.FileLoadedListener;
 import org.editor4j.gui.listeners.FileSavedListener;
 
@@ -43,7 +44,7 @@ public class FileManager {
 
             bufferedReader.close();
         } catch (IOException e) {
-            e.printStackTrace();
+            ErrorLogger.log(e);
         }
 
 
@@ -60,7 +61,7 @@ public class FileManager {
             bufferedWriter.flush();
             bufferedWriter.close();
         } catch (IOException e) {
-            e.printStackTrace();
+            ErrorLogger.log(e);
         }
     }
 

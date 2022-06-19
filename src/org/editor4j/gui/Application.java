@@ -96,7 +96,9 @@ public class Application {
         ));
         jMenuBar.add(new Menu("Editor",
 
-                new MenuItem("Settings", KeyStroke.getKeyStroke((char) KeyEvent.VK_S, osMenuMask | InputEvent.ALT_DOWN_MASK), new SettingsMenuItemListener(this))
+                new MenuItem("Settings", KeyStroke.getKeyStroke((char) KeyEvent.VK_S, osMenuMask | InputEvent.ALT_DOWN_MASK), new SettingsMenuItemListener(this)),
+                new MenuItem("Error Log", KeyStroke.getKeyStroke((char) KeyEvent.VK_M, osMenuMask | InputEvent.ALT_DOWN_MASK), new ErrorLogMenuItemListener()),
+                new MenuItem("Inject Error", KeyStroke.getKeyStroke((char) KeyEvent.VK_P, osMenuMask | InputEvent.ALT_DOWN_MASK), new InjectErrorMenuItemListener())
         ));
 
         jMenuBar.add(new Menu("Help",

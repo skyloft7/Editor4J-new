@@ -1,5 +1,7 @@
 package org.editor4j.gui.listeners;
 
+import org.editor4j.ErrorLogger;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,10 +14,8 @@ public class VisitGitHubRepoListener implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         try {
             Desktop.getDesktop().browse(new URL("https://www.github.com/skyloft7/Editor4J-new").toURI());
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        } catch (URISyntaxException ex) {
-            ex.printStackTrace();
+        } catch (IOException | URISyntaxException ex) {
+            ErrorLogger.log(ex);
         }
 
     }
