@@ -1,5 +1,6 @@
 package org.editor4j.gui;
 
+import org.editor4j.ErrorLogger;
 import org.editor4j.Utils;
 import org.editor4j.gui.components.Editor;
 import org.editor4j.gui.components.Menu;
@@ -29,7 +30,6 @@ public class Application {
     public static final String version = "2022.2";
 
     public JPanel contentPane = new JPanel();
-    public JPanel toolBars = new JPanel();
 
     public CodeEditorComponent codeEditorComponent = new CodeEditorComponent();
 
@@ -39,18 +39,17 @@ public class Application {
 
     public void createNewEditor() {
 
+        ComponentRegistry.components.put("menuBarComponent", jMenuBar);
+        ComponentRegistry.components.put("codeEditorComponent", codeEditorComponent);
+
 
         createMenuItems();
-        ComponentRegistry.components.put("menuBarComponent", jMenuBar);
         jFrame.setJMenuBar(jMenuBar);
 
-        toolBars.setLayout(new BoxLayout(toolBars, BoxLayout.Y_AXIS));
 
         contentPane.setLayout(new BorderLayout());
-        contentPane.add(toolBars, BorderLayout.NORTH);
         contentPane.add(codeEditorComponent, BorderLayout.CENTER);
 
-        ComponentRegistry.components.put("codeEditorComponent", codeEditorComponent);
 
         jFrame.setContentPane(contentPane);
 
@@ -70,17 +69,19 @@ public class Application {
 
         File[] iconFiles = new File("resources/icons").listFiles();
 
+        try {
 
-
-        for(File iconFile : iconFiles){
-            icons.add(Utils.toolkit.getImage(iconFile.getPath()));
+            for (File iconFile : iconFiles) {
+                icons.add(Utils.toolkit.getImage(iconFile.getPath()));
+            }
+        } catch (NullPointerException e){
+            ErrorLogger.log(e);
         }
 
         return icons;
     }
 
     public void createMenuItems(){
-        System.setProperty("flatlaf.menuBarEmbedded", "true");
         jMenuBar = new JMenuBar();
 
         jMenuBar.add(new Menu("File",
@@ -103,7 +104,6 @@ public class Application {
 
         jMenuBar.add(new Menu("Help",
 
-                //NOTE this uses the same shortcut as save
                 new MenuItem("About", null, new AboutMenuItemListener()),
                 new MenuItem("Editor4J on GitHub", null, new VisitGitHubRepoListener()),
                 new MenuItem("License", null, new ShowLicenseListener())
