@@ -2,7 +2,6 @@ package org.editor4j.gui.ide;
 
 import org.editor4j.gui.components.ClosableTabbedPane;
 import org.editor4j.gui.components.Editor;
-import org.editor4j.gui.components.Tab;
 import org.editor4j.gui.signals.CodeEditorSignals;
 
 import java.awt.*;
@@ -15,7 +14,7 @@ public class CodeEditorComponent extends Component implements CodeEditorSignals 
     }
 
     @Override
-    public void addTab(Tab tab) {
+    public void addTab(Editor tab) {
         tabs.addTab(tab);
     }
 

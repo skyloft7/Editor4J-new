@@ -1,6 +1,6 @@
 package org.editor4j.gui.components;
 
-import org.editor4j.models.SyntaxStyleFriendlyNamePair;
+import org.editor4j.models.LanguageDescriptor;
 import org.editor4j.Utils;
 import org.editor4j.managers.FileManager;
 import org.editor4j.managers.SettingsManager;
@@ -30,6 +30,8 @@ public class Editor extends JPanel {
     public InfoBar infoBar = new InfoBar();
     public JPanel toolbarPanel = new JPanel();
     public ArrayList<Class> installedToolbarClasses = new ArrayList<>();
+    public LanguageDescriptor languageDescriptor;
+
     public Editor(){
 
         setLayout(new BorderLayout());
@@ -138,8 +140,8 @@ public class Editor extends JPanel {
         String fileExtension = Utils.getFileExtension(file.getName());
 
 
-        SyntaxStyleFriendlyNamePair s = Utils.languages.getOrDefault(fileExtension, new SyntaxStyleFriendlyNamePair(SyntaxConstants.SYNTAX_STYLE_NONE, "Unknown"));
-
+        LanguageDescriptor s = Utils.languages.getOrDefault(fileExtension, new LanguageDescriptor(SyntaxConstants.SYNTAX_STYLE_NONE, "Unknown", null));
+        this.languageDescriptor = s;
 
         setLanguage(s.syntaxStyle);
 

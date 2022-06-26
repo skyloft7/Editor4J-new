@@ -6,7 +6,7 @@
 
 package org.editor4j;
 
-import org.editor4j.models.SyntaxStyleFriendlyNamePair;
+import org.editor4j.models.LanguageDescriptor;
 import org.fife.ui.rtextarea.Gutter;
 
 import javax.swing.*;
@@ -21,31 +21,31 @@ import static org.fife.ui.rsyntaxtextarea.SyntaxConstants.*;
 
 public class Utils {
 
-    public static HashMap<String, SyntaxStyleFriendlyNamePair> languages = new HashMap<>();
+    public static HashMap<String, LanguageDescriptor> languages = new HashMap<>();
 
     static {
 
-        languages.put("java", new SyntaxStyleFriendlyNamePair(SYNTAX_STYLE_JAVA, "Java"));
-        languages.put("py", new SyntaxStyleFriendlyNamePair(SYNTAX_STYLE_PYTHON, "Python"));
-        languages.put("c", new SyntaxStyleFriendlyNamePair(SYNTAX_STYLE_C, "C"));
-        languages.put("h", new SyntaxStyleFriendlyNamePair(SYNTAX_STYLE_CPLUSPLUS, "C/C++ Header"));
-        languages.put("cpp", new SyntaxStyleFriendlyNamePair(SYNTAX_STYLE_CPLUSPLUS, "C++"));
-        languages.put("rb", new SyntaxStyleFriendlyNamePair(SYNTAX_STYLE_RUBY, "Ruby"));
-        languages.put("as", new SyntaxStyleFriendlyNamePair(SYNTAX_STYLE_ACTIONSCRIPT, "ActionScript"));
-        languages.put("css", new SyntaxStyleFriendlyNamePair(SYNTAX_STYLE_CSS, "CSS"));
-        languages.put("html", new SyntaxStyleFriendlyNamePair(SYNTAX_STYLE_HTML, "HTML"));
-        languages.put("js", new SyntaxStyleFriendlyNamePair(SYNTAX_STYLE_JAVASCRIPT, "JavaScript"));
-        languages.put("kt", new SyntaxStyleFriendlyNamePair(SYNTAX_STYLE_KOTLIN, "Kotlin"));
-        languages.put("md", new SyntaxStyleFriendlyNamePair(SYNTAX_STYLE_MARKDOWN, "Markdown"));
-        languages.put("sh", new SyntaxStyleFriendlyNamePair(SYNTAX_STYLE_UNIX_SHELL, "Unix Shell Script"));
-        languages.put("bat", new SyntaxStyleFriendlyNamePair(SYNTAX_STYLE_WINDOWS_BATCH, "Windows Batch File"));
-        languages.put("cs", new SyntaxStyleFriendlyNamePair(SYNTAX_STYLE_CSHARP, "C#"));
-        languages.put("clj", new SyntaxStyleFriendlyNamePair(SYNTAX_STYLE_CLOJURE, "Clojure"));
-        languages.put("scala", new SyntaxStyleFriendlyNamePair(SYNTAX_STYLE_SCALA, "Scala"));
-        languages.put("sc", new SyntaxStyleFriendlyNamePair(SYNTAX_STYLE_SCALA, "Scala"));
-        languages.put("ts", new SyntaxStyleFriendlyNamePair(SYNTAX_STYLE_TYPESCRIPT, "TypeScript"));
-        languages.put("dart", new SyntaxStyleFriendlyNamePair(SYNTAX_STYLE_DART, "Dart"));
-        languages.put("txt", new SyntaxStyleFriendlyNamePair(SYNTAX_STYLE_NONE, "Plain Text"));
+        languages.put("java", new LanguageDescriptor(SYNTAX_STYLE_JAVA, "Java", "java"));
+        languages.put("py", new LanguageDescriptor(SYNTAX_STYLE_PYTHON, "Python", "python"));
+        languages.put("c", new LanguageDescriptor(SYNTAX_STYLE_C, "C", "c"));
+        languages.put("h", new LanguageDescriptor(SYNTAX_STYLE_CPLUSPLUS, "C/C++ Header", "c"));
+        languages.put("cpp", new LanguageDescriptor(SYNTAX_STYLE_CPLUSPLUS, "C++", "cplusplus"));
+        languages.put("rb", new LanguageDescriptor(SYNTAX_STYLE_RUBY, "Ruby", "ruby"));
+        languages.put("as", new LanguageDescriptor(SYNTAX_STYLE_ACTIONSCRIPT, "ActionScript", null));
+        languages.put("css", new LanguageDescriptor(SYNTAX_STYLE_CSS, "CSS", "css3"));
+        languages.put("html", new LanguageDescriptor(SYNTAX_STYLE_HTML, "HTML", "html5"));
+        languages.put("js", new LanguageDescriptor(SYNTAX_STYLE_JAVASCRIPT, "JavaScript", "javascript"));
+        languages.put("kt", new LanguageDescriptor(SYNTAX_STYLE_KOTLIN, "Kotlin", "kotlin"));
+        languages.put("md", new LanguageDescriptor(SYNTAX_STYLE_MARKDOWN, "Markdown", "markdown"));
+        languages.put("sh", new LanguageDescriptor(SYNTAX_STYLE_UNIX_SHELL, "Unix Shell Script", "bash"));
+        languages.put("bat", new LanguageDescriptor(SYNTAX_STYLE_WINDOWS_BATCH, "Windows Batch File", "windows8"));
+        languages.put("cs", new LanguageDescriptor(SYNTAX_STYLE_CSHARP, "C#", "csharp"));
+        languages.put("clj", new LanguageDescriptor(SYNTAX_STYLE_CLOJURE, "Clojure", null));
+        languages.put("scala", new LanguageDescriptor(SYNTAX_STYLE_SCALA, "Scala", "scala"));
+        languages.put("sc", new LanguageDescriptor(SYNTAX_STYLE_SCALA, "Scala", "scala"));
+        languages.put("ts", new LanguageDescriptor(SYNTAX_STYLE_TYPESCRIPT, "TypeScript", "typescript"));
+        languages.put("dart", new LanguageDescriptor(SYNTAX_STYLE_DART, "Dart", "dart"));
+        languages.put("txt", new LanguageDescriptor(SYNTAX_STYLE_NONE, "Plain Text", null));
 
 
     }

@@ -2,7 +2,6 @@ package org.editor4j.gui.listeners;
 
 import org.editor4j.gui.ComponentRegistry;
 import org.editor4j.gui.components.Editor;
-import org.editor4j.gui.components.Tab;
 import org.editor4j.gui.ide.CodeEditorComponent;
 import org.editor4j.managers.DirectoryManager;
 
@@ -38,7 +37,7 @@ public class NewFileMenuItemListener implements ActionListener {
                     Editor editor = new Editor();
                     editor.open(file);
 
-                    codeEditors.addTab(new Tab(file.getName(), editor));
+                    codeEditors.addTab(editor);
 
                 }
                 else {

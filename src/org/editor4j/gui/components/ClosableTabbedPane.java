@@ -1,16 +1,20 @@
 package org.editor4j.gui.components;
 
+import com.formdev.flatlaf.extras.FlatSVGIcon;
 import com.formdev.flatlaf.icons.FlatTabbedPaneCloseIcon;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
 
 
 public class ClosableTabbedPane extends JTabbedPane {
     int currentIndex = 0;
 
+    public void addTab(Editor editor) {
 
-    public void addTab(Tab tab) {
+        Tab tab = new Tab(editor.file.getName(), editor);
+
         tab.index = currentIndex++;
         addTab(tab.title, tab.jPanel);
 
@@ -20,7 +24,7 @@ public class ClosableTabbedPane extends JTabbedPane {
                 removeTabAt(index);
                 reindex();
             }
-        }));
+        }, editor.languageDescriptor.iconName));
 
         setSelectedIndex(tab.index);
 
@@ -37,7 +41,7 @@ public class ClosableTabbedPane extends JTabbedPane {
     class TabComponent extends JPanel {
 
         private Tab parentTab;
-        public TabComponent(Tab parentTab, TabClosingListener tabClosingListener) {
+        public TabComponent(Tab parentTab, TabClosingListener tabClosingListener, String iconName) {
             this.parentTab = parentTab;
 
             setOpaque(false);
@@ -46,6 +50,14 @@ public class ClosableTabbedPane extends JTabbedPane {
             layout.setVgap(0);
             layout.setHgap(0);
 
+            if(iconName != null) {
+
+                FlatSVGIcon flatSVGIcon = new FlatSVGIcon(new File("resources/languageicons/" + iconName + "-original.svg"));
+
+
+                this.add(new JLabel(flatSVGIcon.derive(20, 20)));
+
+            }
 
             this.add(new JLabel(parentTab.title));
 

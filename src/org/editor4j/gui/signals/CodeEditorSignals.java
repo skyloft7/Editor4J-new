@@ -1,10 +1,9 @@
 package org.editor4j.gui.signals;
 
 import org.editor4j.gui.components.Editor;
-import org.editor4j.gui.components.Tab;
 
 public interface CodeEditorSignals {
-    void addTab(Tab tab);
+    void addTab(Editor tab);
 
     int getTabCount();
 
