@@ -48,14 +48,14 @@ public class ClosableTabbedPane extends JTabbedPane {
 
             FlowLayout layout = (FlowLayout) getLayout();
             layout.setVgap(0);
-            layout.setHgap(0);
+            layout.setHgap(5);
 
             if(iconName != null) {
 
                 FlatSVGIcon flatSVGIcon = new FlatSVGIcon(new File("resources/languageicons/" + iconName + "-original.svg"));
 
 
-                this.add(new JLabel(flatSVGIcon.derive(20, 20)));
+                this.add(new JLabel(flatSVGIcon.derive(18, 18)));
 
             }
 
