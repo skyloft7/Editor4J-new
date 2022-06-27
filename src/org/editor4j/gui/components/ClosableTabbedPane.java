@@ -62,7 +62,6 @@ public class ClosableTabbedPane extends JTabbedPane {
             this.add(new JLabel(parentTab.title));
 
 
-            //new icon not committed to git yet
             FlatTabbedPaneCloseIcon f = new FlatTabbedPaneCloseIcon();
 
 
