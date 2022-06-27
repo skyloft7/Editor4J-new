@@ -46,6 +46,7 @@ public class Utils {
         languages.put("ts", new LanguageDescriptor(SYNTAX_STYLE_TYPESCRIPT, "TypeScript", null));
         languages.put("dart", new LanguageDescriptor(SYNTAX_STYLE_DART, "Dart", "dart"));
         languages.put("txt", new LanguageDescriptor(SYNTAX_STYLE_NONE, "Plain Text", null));
+        languages.put("lua", new LanguageDescriptor(SYNTAX_STYLE_LUA, "Lua", "lua"));
 
 
     }
