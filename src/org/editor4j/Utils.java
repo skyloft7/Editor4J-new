@@ -43,7 +43,7 @@ public class Utils {
         languages.put("clj", new LanguageDescriptor(SYNTAX_STYLE_CLOJURE, "Clojure", null));
         languages.put("scala", new LanguageDescriptor(SYNTAX_STYLE_SCALA, "Scala", "scala"));
         languages.put("sc", new LanguageDescriptor(SYNTAX_STYLE_SCALA, "Scala", "scala"));
-        languages.put("ts", new LanguageDescriptor(SYNTAX_STYLE_TYPESCRIPT, "TypeScript", "typescript"));
+        languages.put("ts", new LanguageDescriptor(SYNTAX_STYLE_TYPESCRIPT, "TypeScript", null));
         languages.put("dart", new LanguageDescriptor(SYNTAX_STYLE_DART, "Dart", "dart"));
         languages.put("txt", new LanguageDescriptor(SYNTAX_STYLE_NONE, "Plain Text", null));
 
