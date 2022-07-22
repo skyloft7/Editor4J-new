@@ -6,15 +6,21 @@ import org.editor4j.Utils;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class FirstTimeLicenseDialog extends LicenseDialog {
     public JButton accept = new JButton("I accept");
 
     public FirstTimeLicenseDialog(){
-
         super();
 
-        setUndecorated(true);
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                System.exit(0);
+            }
+        });
 
 
         try {
