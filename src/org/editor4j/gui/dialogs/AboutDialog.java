@@ -9,15 +9,15 @@ import java.awt.*;
 public class AboutDialog extends DialogBase {
     JButton close = new JButton("Close");
     public String text = "Editor4J - Making coding accessible to anyone\n" +
-            "Running on JRE " + System.getProperty("java.vm.name") + "\n by " + System.getProperty("java.vendor");
+            "Running on " + System.getProperty("java.vm.name") + "\n by " + System.getProperty("java.vendor");
     public AboutDialog() {
         super("About Editor4J", 350, 210);
         setModalityType(ModalityType.APPLICATION_MODAL);
 
         JPanel content = new JPanel();
 
-        GridLayout layout = new GridLayout(1, 2);
-        content.setLayout(layout);
+
+        content.setLayout(new BorderLayout());
 
         JPanel iconPanel = new JPanel();
         JLabel iconLabel = new JLabel();
@@ -30,7 +30,6 @@ public class AboutDialog extends DialogBase {
 
         JTextArea infoText = new JTextArea();
         infoText.setEditable(false);
-        infoText.setLineWrap(true);
         infoText.setText(text);
 
         infoPanel.add(infoText);
@@ -40,15 +39,13 @@ public class AboutDialog extends DialogBase {
 
 
 
-        content.add(iconPanel);
-        content.add(infoPanel);
+        content.add(iconPanel, BorderLayout.CENTER);
+        content.add(infoPanel, BorderLayout.SOUTH);
 
 
         setContent(content);
 
         setDefaultButtonOnly(close);
-        close.addActionListener(e -> {
-            dispose();
-        });
+        close.addActionListener(e -> dispose());
     }
 }
