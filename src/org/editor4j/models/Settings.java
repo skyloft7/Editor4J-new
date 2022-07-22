@@ -11,4 +11,5 @@ public class Settings implements Serializable {
     public boolean wordWrapEnabled;
     public int tabSize;
 
+    public boolean embedMenuBar;
 }

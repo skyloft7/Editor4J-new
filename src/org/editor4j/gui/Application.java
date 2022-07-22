@@ -120,6 +120,12 @@ public class Application {
             Editor editor = codeEditorComponent.getEditorAt(i);
             editor.applySettings();
         }
+
+        if(s.embedMenuBar)
+            System.setProperty("flatlaf.menuBarEmbedded", "true");
+        else
+            System.setProperty("flatlaf.menuBarEmbedded", "false");
+
     }
 
 

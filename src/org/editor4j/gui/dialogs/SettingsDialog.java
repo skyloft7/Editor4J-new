@@ -26,7 +26,7 @@ public class SettingsDialog extends DialogBase {
 
     JSpinner tabSizes = new JSpinner(new SpinnerNumberModel(4, 2, 10, 1));
     JCheckBox wordWrap = new JCheckBox();
-
+    JCheckBox embedMenuBar = new JCheckBox();
 
     JComboBox<Style> styles = new JComboBox<>();
 
@@ -36,7 +36,7 @@ public class SettingsDialog extends DialogBase {
 
     JPanel jPanel = new JPanel();
 
-    
+
     public SettingsDialog(){
         //Simple change just to test Git
         super("All Settings", 600, 440);
@@ -67,7 +67,7 @@ public class SettingsDialog extends DialogBase {
         JPanel jPanel = new JPanel();
         jPanel.add(new Field("Tab Size", tabSizes));
         jPanel.add(new Field("Enable Word Wrapping", wordWrap));
-
+        jPanel.add(new Field("Embed Menu Bar (Windows 10+ only \n and requires restart)", embedMenuBar));
 
 
         return jPanel;
@@ -110,6 +110,7 @@ public class SettingsDialog extends DialogBase {
         fontSizes.setValue(currentSettings.font.getSize());
         wordWrap.setSelected(currentSettings.wordWrapEnabled);
         tabSizes.setValue(currentSettings.tabSize);
+        embedMenuBar.setSelected(currentSettings.embedMenuBar);
     }
 
 
@@ -126,6 +127,7 @@ public class SettingsDialog extends DialogBase {
         settings.font = new Font(fontName, Font.PLAIN, fontSize);
         settings.wordWrapEnabled = wordWrap.isSelected();
         settings.tabSize = (int) tabSizes.getValue();
+        settings.embedMenuBar = embedMenuBar.isSelected();
         return settings;
     }
 
