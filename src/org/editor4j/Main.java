@@ -13,16 +13,16 @@ public class Main {
     public static void main(String[] args) {
         SwingUtilities.invokeLater(()-> {
 
-            File firstTimeStartupFile = new File("appdata/firstTime.e4j");
+            File activationFile = new File("appdata/activation.e4j");
 
-            if(!firstTimeStartupFile.exists()){
+            if(!activationFile.exists()){
 
                 FirstTimeLicenseDialog firstTimeLicenseDialog = new FirstTimeLicenseDialog();
                 firstTimeLicenseDialog.setVisible(true);
 
                 firstTimeLicenseDialog.accept.addActionListener(e -> {
                     firstTimeLicenseDialog.dispose();
-                    Utils.createNewFile(firstTimeStartupFile);
+                    Utils.createNewFile(activationFile);
                     launchEditor4J();
                 });
 
