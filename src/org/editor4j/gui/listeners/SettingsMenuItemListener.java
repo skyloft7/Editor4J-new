@@ -23,7 +23,7 @@ public class SettingsMenuItemListener implements ActionListener {
 
         SettingsDialog settingsDialog = new SettingsDialog();
 
-        settingsDialog.apply.addActionListener(actionEvent1->{
+        ActionListener applySettings = actionEvent1 -> {
             try {
                 Settings chosenSettings = settingsDialog.getSettings();
                 SettingsManager.currentSettings = chosenSettings;
@@ -33,7 +33,11 @@ public class SettingsMenuItemListener implements ActionListener {
             } catch (IOException e) {
                 ErrorLogger.log(e);
             }
-        });
+        };
+
+        settingsDialog.apply.addActionListener(applySettings);
+        settingsDialog.applyAndClose.addActionListener(applySettings);
+        settingsDialog.applyAndClose.addActionListener((e) -> settingsDialog.dispose());
 
         settingsDialog.setVisible(true);
     }

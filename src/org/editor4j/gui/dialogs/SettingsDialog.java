@@ -23,6 +23,7 @@ import static org.editor4j.managers.SettingsManager.currentSettings;
 public class SettingsDialog extends DialogBase {
 
     public JButton apply = new JButton("Apply");
+    public JButton applyAndClose = new JButton("OK");
 
     JSpinner tabSizes = new JSpinner(new SpinnerNumberModel(4, 2, 10, 1));
     JCheckBox wordWrap = new JCheckBox();
@@ -51,14 +52,15 @@ public class SettingsDialog extends DialogBase {
         jTabbedPane.add("Fonts", buildFontOptions());
 
         jPanel.add(jTabbedPane);
-        SwingUtilities.getRootPane(this).setDefaultButton(apply);
+        SwingUtilities.getRootPane(this).setDefaultButton(applyAndClose);
         setModalityType(ModalityType.APPLICATION_MODAL);
 
         super.setContent(jPanel);
-        super.setDefaultButtonOnly(apply);
+        super.setButtons(applyAndClose, apply);
 
 
         apply.addActionListener(new ReloadSettingsDialogListener(this));
+
 
         setSettings(currentSettings);
     }
