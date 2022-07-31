@@ -32,4 +32,28 @@ public class CodeEditorComponent extends Component implements CodeEditorSignals 
     public int getSelectedEditorIndex() {
         return tabs.getSelectedIndex();
     }
+
+    public boolean areAnyEditorsUnsaved() {
+        for(int i = 0; i < tabs.getTabCount(); i++){
+            Editor e = getEditorAt(i);
+            if(!e.saved)
+                return true;
+        }
+
+        return false;
+    }
+
+    public String getUnsavedEditorsAsString() {
+
+        String unsavedEditors = "";
+
+        for(int i = 0; i < tabs.getTabCount(); i++){
+            Editor e = getEditorAt(i);
+            if(!e.saved){
+                unsavedEditors += e.file.getName() + " ";
+            }
+        }
+
+        return unsavedEditors;
+    }
 }

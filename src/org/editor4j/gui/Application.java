@@ -14,6 +14,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.File;
 import java.util.ArrayList;
 
@@ -59,9 +61,47 @@ public class Application {
 
         jFrame.setIconImages(searchAllIcons());
 
-        jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        jFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         jFrame.setSize(1280, 960);
+
+        jFrame.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+
+                CodeEditorComponent c = (CodeEditorComponent) ComponentRegistry.components.get("codeEditorComponent");
+
+                if(c.areAnyEditorsUnsaved()){
+
+                    String unsavedEditorNames = c.getUnsavedEditorsAsString();
+
+                    if(showUnsavedWarningDialog(jFrame, unsavedEditorNames))
+                        System.exit(0);
+                }
+                else
+                    System.exit(0);
+
+            }
+        });
+
         jFrame.setVisible(true);
+    }
+
+    private boolean showUnsavedWarningDialog(JFrame frame, String unsavedEditorNames) {
+        boolean userWantsToQuitAnyway;
+
+        userWantsToQuitAnyway = JOptionPane.showOptionDialog(
+                frame,
+                "Files " + unsavedEditorNames + " are unsaved! Quit anyway?",
+                "Unsaved Files",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.WARNING_MESSAGE,
+                null,
+                null,
+                null
+                ) == JOptionPane.YES_OPTION;
+
+
+        return userWantsToQuitAnyway;
     }
 
     public ArrayList<Image> searchAllIcons(){
