@@ -31,6 +31,7 @@ public class Editor extends JPanel {
     public JPanel toolbarPanel = new JPanel();
     public ArrayList<Class> installedToolbarClasses = new ArrayList<>();
     public LanguageDescriptor languageDescriptor;
+    public boolean justOpened = true;
 
     public Editor(){
 
@@ -72,6 +73,7 @@ public class Editor extends JPanel {
 
             @Override
             public void changedUpdate(DocumentEvent e) {
+                justOpened = false;
                 saved = false;
                 infoBar.fileStatus.setText("Not Saved");
             }

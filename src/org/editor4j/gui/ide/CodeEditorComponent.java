@@ -47,11 +47,10 @@ public class CodeEditorComponent extends Component implements CodeEditorSignals 
 
         String unsavedEditors = "";
 
+
         for(int i = 0; i < tabs.getTabCount(); i++){
             Editor e = getEditorAt(i);
-            if(!e.saved){
-                unsavedEditors += e.file.getName() + " ";
-            }
+            if(!e.saved && !e.justOpened) unsavedEditors += e.file.getName() + " ";
         }
 
         return unsavedEditors;
