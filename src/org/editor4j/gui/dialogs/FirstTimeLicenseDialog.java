@@ -26,7 +26,7 @@ public class FirstTimeLicenseDialog extends LicenseDialog {
         try {
             UIManager.setLookAndFeel(new FlatLightLaf());
         } catch (UnsupportedLookAndFeelException e) {
-            ErrorLogger.log(e);
+            e.printStackTrace();
         }
 
         ButtonGroup buttonGroup = new ButtonGroup();

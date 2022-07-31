@@ -59,7 +59,7 @@ public class Utils {
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream(file));
             objectOutputStream.writeObject(o);
         } catch (IOException e) {
-            ErrorLogger.log(e);
+            e.printStackTrace();
         }
 
     }
@@ -80,7 +80,7 @@ public class Utils {
             f.createNewFile();
         } catch (IOException e) {
             System.err.println("Not allowed to create file " + f.getName() + ". do you have permissions?");
-            ErrorLogger.log(e);
+            e.printStackTrace();
         }
     }
 
@@ -90,7 +90,7 @@ public class Utils {
         } catch (UnsupportedLookAndFeelException e) {
             JOptionPane.showMessageDialog(null, "LaF " + c + " caused an exception: " + e.getMessage());
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
-            ErrorLogger.log(e);
+            e.printStackTrace();
         }
     }
 

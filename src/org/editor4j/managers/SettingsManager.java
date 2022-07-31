@@ -24,7 +24,7 @@ public class SettingsManager {
             STARTUP_DEFAULT_SETTINGS.wordWrapEnabled = false;
             STARTUP_DEFAULT_SETTINGS.tabSize = 4;
         } catch (IOException e) {
-            ErrorLogger.log(e);
+            e.printStackTrace();
         }
     }
 
@@ -33,7 +33,7 @@ public class SettingsManager {
             ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(settingsFile));
             return (Settings) objectInputStream.readObject();
         } catch (IOException | ClassNotFoundException e) {
-            ErrorLogger.log(e);
+            e.printStackTrace();
         }
         //Never happens because deserialize is only called when loadSettings() finds editor.settingsFile
         return null;

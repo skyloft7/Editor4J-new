@@ -12,7 +12,7 @@ public class InjectErrorMenuItemListener implements ActionListener {
         try {
             throw new Exception("[!Injected Exception!]");
         } catch (Exception j){
-            ErrorLogger.log(j);
+            j.printStackTrace();
         }
         finally {
             JOptionPane.showMessageDialog(null, "Injected Exception ");

@@ -1,10 +1,20 @@
 package org.editor4j;
 
-import java.io.PrintWriter;
-import java.io.StringWriter;
+import java.io.*;
 import java.util.Date;
 
 public class ErrorLogger {
+
+    private static OutputStream output = new OutputStream() {
+        @Override
+        public void write(int b) {
+            stringBuilder.append((char) b);
+        }public String toString() {
+            return super.toString();
+        }
+    };
+    public static PrintStream errorStream = new PrintStream(output);
+
     private static StringBuilder stringBuilder = new StringBuilder();
 
     public static String allErrors(){

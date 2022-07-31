@@ -23,7 +23,7 @@ public class LicenseDialog extends DialogBase {
             try {
                 licenseText.setText((String) s.get());
             } catch (InterruptedException | ExecutionException e) {
-                ErrorLogger.log(e);
+                e.printStackTrace();
             }
         });
 

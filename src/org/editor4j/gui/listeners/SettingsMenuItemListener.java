@@ -31,7 +31,7 @@ public class SettingsMenuItemListener implements ActionListener {
                 application.applySettings(chosenSettings);
 
             } catch (IOException e) {
-                ErrorLogger.log(e);
+                e.printStackTrace();
             }
         };
 

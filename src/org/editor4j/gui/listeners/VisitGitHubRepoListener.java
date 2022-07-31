@@ -15,7 +15,7 @@ public class VisitGitHubRepoListener implements ActionListener {
         try {
             Desktop.getDesktop().browse(new URL("https://www.github.com/skyloft7/Editor4J-new").toURI());
         } catch (IOException | URISyntaxException ex) {
-            ErrorLogger.log(ex);
+            ex.printStackTrace();
         }
 
     }

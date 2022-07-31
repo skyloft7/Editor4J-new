@@ -39,7 +39,10 @@ public class Application {
 
     public JMenuBar jMenuBar;
 
+
     public void createNewEditor() {
+
+        System.setErr(ErrorLogger.errorStream);
 
         ComponentRegistry.components.put("menuBarComponent", jMenuBar);
         ComponentRegistry.components.put("codeEditorComponent", codeEditorComponent);
@@ -115,7 +118,7 @@ public class Application {
                 icons.add(Utils.toolkit.getImage(iconFile.getPath()));
             }
         } catch (NullPointerException e){
-            ErrorLogger.log(e);
+            e.printStackTrace();
         }
 
         return icons;

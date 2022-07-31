@@ -26,7 +26,7 @@ public class ErrorLogDialog extends DialogBase implements ActionListener {
         content.setLayout(new BoxLayout(content, BoxLayout.Y_AXIS));
         content.add(new JLabel("Errors in the Editor are logged here."));
         content.add(new JLabel("If there are any errors, it's better that you restart Editor4J as it could be in an invalid state."));
-
+        content.add(new JLabel("Pro Tip: The newest Stacktrace is always at the bottom"));
 
         JTextArea exceptions = new JTextArea(ErrorLogger.allErrors());
         exceptions.setEditable(false);

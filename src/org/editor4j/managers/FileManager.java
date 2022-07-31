@@ -44,7 +44,7 @@ public class FileManager {
 
             bufferedReader.close();
         } catch (IOException e) {
-            ErrorLogger.log(e);
+            e.printStackTrace();
         }
 
 
@@ -61,7 +61,7 @@ public class FileManager {
             bufferedWriter.flush();
             bufferedWriter.close();
         } catch (IOException e) {
-            ErrorLogger.log(e);
+            e.printStackTrace();
         }
     }
 
