@@ -29,7 +29,7 @@ import static org.editor4j.Utils.osMenuMask;
  */
 public class Application {
 
-    public static final String version = "2022.3";
+    public static final String version = "2022.4";
 
     public JPanel contentPane = new JPanel();
 
