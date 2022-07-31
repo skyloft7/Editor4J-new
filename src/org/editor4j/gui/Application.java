@@ -132,8 +132,8 @@ public class Application {
         ));
         jMenuBar.add(new Menu("Edit",
 
-                new MenuItem("Find/Replace", KeyStroke.getKeyStroke((char) KeyEvent.VK_F, osMenuMask), new FindReplaceMenuItemListener())
-
+                new MenuItem("Find/Replace", KeyStroke.getKeyStroke((char) KeyEvent.VK_F, osMenuMask), new FindReplaceMenuItemListener()),
+                new MenuItem("Copy Path", KeyStroke.getKeyStroke((char) KeyEvent.VK_W, osMenuMask), new CopyPathMenuItemListener())
         ));
         jMenuBar.add(new Menu("Editor",
 
