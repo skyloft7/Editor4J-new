@@ -126,6 +126,11 @@ public class Application {
         else
             System.setProperty("flatlaf.menuBarEmbedded", "false");
 
+        if(s.opengl)
+            System.setProperty("sun.java2d.opengl", "true");
+        else
+            System.setProperty("sun.java2d.opengl", "false");
+
     }
 
 

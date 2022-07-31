@@ -27,6 +27,7 @@ public class SettingsDialog extends DialogBase {
     JSpinner tabSizes = new JSpinner(new SpinnerNumberModel(4, 2, 10, 1));
     JCheckBox wordWrap = new JCheckBox();
     JCheckBox embedMenuBar = new JCheckBox();
+    JCheckBox hardwareAcceleration = new JCheckBox();
 
     JComboBox<Style> styles = new JComboBox<>();
 
@@ -68,7 +69,7 @@ public class SettingsDialog extends DialogBase {
         jPanel.add(new Field("Tab Size", tabSizes));
         jPanel.add(new Field("Enable Word Wrapping", wordWrap));
         jPanel.add(new Field("Embed Menu Bar (Windows 10+ only \n and requires restart)", embedMenuBar));
-
+        jPanel.add(new Field("Hardware Acceleration using OpenGL", hardwareAcceleration));
 
         return jPanel;
     }
@@ -111,6 +112,7 @@ public class SettingsDialog extends DialogBase {
         wordWrap.setSelected(currentSettings.wordWrapEnabled);
         tabSizes.setValue(currentSettings.tabSize);
         embedMenuBar.setSelected(currentSettings.embedMenuBar);
+        hardwareAcceleration.setSelected(currentSettings.opengl);
     }
 
 
@@ -128,6 +130,8 @@ public class SettingsDialog extends DialogBase {
         settings.wordWrapEnabled = wordWrap.isSelected();
         settings.tabSize = (int) tabSizes.getValue();
         settings.embedMenuBar = embedMenuBar.isSelected();
+        settings.opengl = hardwareAcceleration.isSelected();
+
         return settings;
     }
 

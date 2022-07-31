@@ -12,4 +12,5 @@ public class Settings implements Serializable {
     public int tabSize;
 
     public boolean embedMenuBar;
+    public boolean opengl;
 }
