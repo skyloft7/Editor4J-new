@@ -36,7 +36,7 @@ public class CodeEditorComponent extends Component implements CodeEditorSignals 
     public boolean areAnyEditorsUnsaved() {
         for(int i = 0; i < tabs.getTabCount(); i++){
             Editor e = getEditorAt(i);
-            if(!e.saved)
+            if(e.fileState == Editor.FileState.NOT_SAVED)
                 return true;
         }
 
@@ -50,7 +50,11 @@ public class CodeEditorComponent extends Component implements CodeEditorSignals 
 
         for(int i = 0; i < tabs.getTabCount(); i++){
             Editor e = getEditorAt(i);
-            if(!e.saved && !e.justOpened) unsavedEditors += e.file.getName() + " ";
+
+
+            System.out.println("Editor [" + e.file.getName() + "] Saved: " + e.fileState);
+
+            if(e.fileState == Editor.FileState.NOT_SAVED) unsavedEditors += e.file.getName() + " ";
         }
 
         return unsavedEditors;

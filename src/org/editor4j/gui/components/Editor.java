@@ -26,12 +26,17 @@ public class Editor extends JPanel {
     public RSyntaxTextArea rSyntaxTextArea;
     public RTextScrollPane rTextScrollPane;
     public File file;
-    public boolean saved = true;
+    public FileState fileState = FileState.JUST_OPENED;
     public InfoBar infoBar = new InfoBar();
     public JPanel toolbarPanel = new JPanel();
     public ArrayList<Class> installedToolbarClasses = new ArrayList<>();
     public LanguageDescriptor languageDescriptor;
-    public boolean justOpened = true;
+
+    public enum FileState {
+        JUST_OPENED,
+        SAVED,
+        NOT_SAVED
+    }
 
     public Editor(){
 
@@ -62,19 +67,16 @@ public class Editor extends JPanel {
 
         rSyntaxTextArea.getDocument().addDocumentListener(new DocumentListener() {
             @Override
-            public void insertUpdate(DocumentEvent e) {
-
+            public void insertUpdate(DocumentEvent e){
             }
 
             @Override
             public void removeUpdate(DocumentEvent e) {
-
             }
 
             @Override
             public void changedUpdate(DocumentEvent e) {
-                justOpened = false;
-                saved = false;
+                fileState = FileState.NOT_SAVED;
                 infoBar.fileStatus.setText("Not Saved");
             }
         });
@@ -112,6 +114,7 @@ public class Editor extends JPanel {
 
     public void setText(String t){
         rSyntaxTextArea.setText(t);
+        fileState = FileState.JUST_OPENED;
     }
 
     public String getText(){
@@ -155,9 +158,10 @@ public class Editor extends JPanel {
 
     public void save() {
         FileManager.saveFileOffEDT(file.getPath(), getText(), () -> {
-            saved = true;
             infoBar.fileStatus.setText("File Saved");
         });
+
+        fileState = FileState.SAVED;
     }
 
 
