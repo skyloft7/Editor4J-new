@@ -14,7 +14,6 @@ public class CopyPathMenuItemListener implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
 
-        JOptionPane.showMessageDialog(null, "Working!");
 
         CodeEditorComponent c = (CodeEditorComponent) ComponentRegistry.components.get("codeEditorComponent");
 
