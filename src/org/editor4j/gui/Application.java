@@ -5,8 +5,9 @@ import org.editor4j.Utils;
 import org.editor4j.gui.components.Editor;
 import org.editor4j.gui.components.Menu;
 import org.editor4j.gui.components.MenuItem;
-import org.editor4j.gui.ide.CodeEditorComponent;
+import org.editor4j.gui.ide.CodeEditorIdeComponent;
 import org.editor4j.gui.listeners.*;
+import org.editor4j.managers.PersistenceManager;
 import org.editor4j.managers.SettingsManager;
 import org.editor4j.models.Settings;
 
@@ -33,7 +34,7 @@ public class Application {
 
     public JPanel contentPane = new JPanel();
 
-    public CodeEditorComponent codeEditorComponent = new CodeEditorComponent();
+    public CodeEditorIdeComponent codeEditorComponent = new CodeEditorIdeComponent();
 
     public JFrame jFrame = new JFrame("Editor4J " + version);
 
@@ -44,12 +45,12 @@ public class Application {
 
         System.setErr(ErrorLogger.errorStream);
 
-        ComponentRegistry.components.put("menuBarComponent", jMenuBar);
-        ComponentRegistry.components.put("codeEditorComponent", codeEditorComponent);
+        IdeComponentRegistry.ideComponents.put("codeEditorComponent", codeEditorComponent);
 
 
         createMenuItems();
         jFrame.setJMenuBar(jMenuBar);
+
 
 
         contentPane.setLayout(new BorderLayout());
@@ -71,22 +72,37 @@ public class Application {
             @Override
             public void windowClosing(WindowEvent e) {
 
-                CodeEditorComponent c = (CodeEditorComponent) ComponentRegistry.components.get("codeEditorComponent");
+                CodeEditorIdeComponent c = (CodeEditorIdeComponent) IdeComponentRegistry.ideComponents.get("codeEditorComponent");
 
                 if(c.areAnyEditorsUnsaved()){
 
                     String unsavedEditorNames = c.getUnsavedEditorsAsString();
 
                     if(showUnsavedWarningDialog(jFrame, unsavedEditorNames))
-                        System.exit(0);
+                        shutdown();
                 }
                 else
-                    System.exit(0);
+                    shutdown();
 
             }
         });
 
+        loadAllComponentState();
+
         jFrame.setVisible(true);
+    }
+
+    private void shutdown(){
+        saveAllComponentStates();
+        System.exit(0);
+    }
+
+    private void loadAllComponentState() {
+        PersistenceManager.loadAllStatesOffEDT();
+    }
+
+    private void saveAllComponentStates() {
+        PersistenceManager.saveAllOffEDT(IdeComponentRegistry.ideComponents.values());
     }
 
     private boolean showUnsavedWarningDialog(JFrame frame, String unsavedEditorNames) {

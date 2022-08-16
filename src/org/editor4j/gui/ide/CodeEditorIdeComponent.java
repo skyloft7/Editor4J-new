@@ -3,14 +3,19 @@ package org.editor4j.gui.ide;
 import org.editor4j.gui.components.ClosableTabbedPane;
 import org.editor4j.gui.components.Editor;
 import org.editor4j.gui.signals.CodeEditorSignals;
+import org.editor4j.models.IdeComponentState;
+import org.editor4j.models.OpenedFilesState;
 
 import java.awt.*;
+import java.io.File;
 
-public class CodeEditorComponent extends Component implements CodeEditorSignals {
+public class CodeEditorIdeComponent extends IdeComponent implements CodeEditorSignals {
     ClosableTabbedPane tabs = new ClosableTabbedPane();
-    public CodeEditorComponent(){
+    public CodeEditorIdeComponent(){
         setLayout(new BorderLayout());
         add(tabs, BorderLayout.CENTER);
+
+        state = new OpenedFilesState();
     }
 
     @Override
@@ -58,5 +63,44 @@ public class CodeEditorComponent extends Component implements CodeEditorSignals 
         }
 
         return unsavedEditors;
+    }
+
+    @Override
+    public void loadState(IdeComponentState f) {
+        state = f;
+
+        OpenedFilesState openedFilesState = (OpenedFilesState) state;
+
+        System.out.println(openedFilesState.openFiles.size());
+
+        for (int index = 0; index < openedFilesState.openFiles.size(); index++) {
+            String filePath = openedFilesState.openFiles.get(index);
+
+            File file = new File(filePath);
+
+            if(file.exists()){
+                Editor editor = new Editor();
+                editor.open(file);
+                addTab(editor);
+
+                System.out.println("Opening " + file.getName());
+            }
+        }
+    }
+
+    @Override
+    public IdeComponentState saveState() {
+
+        state = new OpenedFilesState();
+
+        for (int index = 0; index < getTabCount(); index++) {
+            File file = getEditorAt(index).file;
+            state.openFiles.add(file.getAbsolutePath());
+
+        }
+
+        System.out.println("Tabs: " + getTabCount());
+
+        return state;
     }
 }

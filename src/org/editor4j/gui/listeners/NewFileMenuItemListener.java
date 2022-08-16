@@ -1,8 +1,8 @@
 package org.editor4j.gui.listeners;
 
-import org.editor4j.gui.ComponentRegistry;
+import org.editor4j.gui.IdeComponentRegistry;
 import org.editor4j.gui.components.Editor;
-import org.editor4j.gui.ide.CodeEditorComponent;
+import org.editor4j.gui.ide.CodeEditorIdeComponent;
 import org.editor4j.managers.DirectoryManager;
 
 import javax.swing.*;
@@ -26,7 +26,7 @@ public class NewFileMenuItemListener implements ActionListener {
                 boolean isNewFileCreated = jFileChooser.getSelectedFile().createNewFile();
                 if(isNewFileCreated){
 
-                    CodeEditorComponent codeEditors = (CodeEditorComponent) ComponentRegistry.components.get("codeEditorComponent");
+                    CodeEditorIdeComponent codeEditors = (CodeEditorIdeComponent) IdeComponentRegistry.ideComponents.get("codeEditorComponent");
 
 
                     File file = jFileChooser.getSelectedFile();

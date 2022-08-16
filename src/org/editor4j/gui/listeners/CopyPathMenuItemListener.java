@@ -1,10 +1,9 @@
 package org.editor4j.gui.listeners;
 
-import org.editor4j.gui.ComponentRegistry;
+import org.editor4j.gui.IdeComponentRegistry;
 import org.editor4j.gui.components.Editor;
-import org.editor4j.gui.ide.CodeEditorComponent;
+import org.editor4j.gui.ide.CodeEditorIdeComponent;
 
-import javax.swing.*;
 import java.awt.*;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.ActionEvent;
@@ -15,7 +14,7 @@ public class CopyPathMenuItemListener implements ActionListener {
     public void actionPerformed(ActionEvent actionEvent) {
 
 
-        CodeEditorComponent c = (CodeEditorComponent) ComponentRegistry.components.get("codeEditorComponent");
+        CodeEditorIdeComponent c = (CodeEditorIdeComponent) IdeComponentRegistry.ideComponents.get("codeEditorComponent");
 
 
         int selectedEditorIndex = c.getSelectedEditorIndex();

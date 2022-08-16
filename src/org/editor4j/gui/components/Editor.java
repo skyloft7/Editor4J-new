@@ -114,7 +114,6 @@ public class Editor extends JPanel {
 
     public void setText(String t){
         rSyntaxTextArea.setText(t);
-        fileState = FileState.JUST_OPENED;
     }
 
     public String getText(){
@@ -134,6 +133,8 @@ public class Editor extends JPanel {
             try {
                 setText((String) s.get());
                 infoBar.fileStatus.setText("File Loaded");
+                fileState = FileState.JUST_OPENED;
+
 
             } catch (InterruptedException | ExecutionException e) {
                 e.printStackTrace();
