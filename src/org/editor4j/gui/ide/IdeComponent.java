@@ -8,7 +8,7 @@ public abstract class IdeComponent extends JPanel {
     protected IdeComponentState state;
 
     public abstract void loadState(IdeComponentState f);
-    public abstract IdeComponentState saveState();
+    public abstract IdeComponentState onSubmitState();
 
     public IdeComponentState getState() {
         return state;

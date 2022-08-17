@@ -83,13 +83,12 @@ public class CodeEditorIdeComponent extends IdeComponent implements CodeEditorSi
                 editor.open(file);
                 addTab(editor);
 
-                System.out.println("Opening " + file.getName());
             }
         }
     }
 
     @Override
-    public IdeComponentState saveState() {
+    public IdeComponentState onSubmitState() {
 
         state = new OpenedFilesState();
 
@@ -98,9 +97,6 @@ public class CodeEditorIdeComponent extends IdeComponent implements CodeEditorSi
             state.openFiles.add(file.getAbsolutePath());
 
         }
-
-        System.out.println("Tabs: " + getTabCount());
-
         return state;
     }
 }

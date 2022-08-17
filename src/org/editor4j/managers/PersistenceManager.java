@@ -18,7 +18,7 @@ public class PersistenceManager {
                 for(IdeComponent c : ideComponents){
                     if(c.getState() != null) {
                         ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream(c.getClass().getName()));
-                        c.saveState();
+                        c.onSubmitState();
                         objectOutputStream.writeObject(c.getState());
                         objectOutputStream.close();
                     }
@@ -44,8 +44,7 @@ public class PersistenceManager {
                         ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(stateFile));
                         IdeComponentState ideComponentState = (IdeComponentState) objectInputStream.readObject();
                         objectInputStream.close();
-
-                        c.loadState(ideComponentState);
+                        SwingUtilities.invokeLater(() -> c.loadState(ideComponentState));
                     }
 
                 }
